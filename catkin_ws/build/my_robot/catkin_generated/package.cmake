@@ -1,6 +1,6 @@
 set(_CATKIN_CURRENT_PACKAGE "my_robot")
 set(my_robot_VERSION "0.0.0")
-set(my_robot_MAINTAINER "robond <robond@todo.todo>")
+set(my_robot_MAINTAINER "robond <ibrahimsaber249@gmail.com>")
 set(my_robot_PACKAGE_FORMAT "1")
 set(my_robot_BUILD_DEPENDS "roscpp" "rospy" "sensor_msgs" "std_msgs")
 set(my_robot_BUILD_EXPORT_DEPENDS "roscpp" "rospy" "sensor_msgs" "std_msgs")

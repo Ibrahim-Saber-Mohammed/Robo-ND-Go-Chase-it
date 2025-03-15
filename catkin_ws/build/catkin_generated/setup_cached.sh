@@ -7,7 +7,4 @@
 # new environment variables
 
 # modified environment variables
-export CMAKE_PREFIX_PATH="/home/robond/Desktop/GoChaseIt_robot/catkin_ws/devel:$CMAKE_PREFIX_PATH"
 export PWD="/home/robond/Desktop/GoChaseIt_robot/catkin_ws/build"
-export ROSLISP_PACKAGE_DIRECTORIES="/home/robond/Desktop/GoChaseIt_robot/catkin_ws/devel/share/common-lisp"
-export ROS_PACKAGE_PATH="/home/robond/Desktop/GoChaseIt_robot/catkin_ws/src:$ROS_PACKAGE_PATH"

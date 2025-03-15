@@ -198,6 +198,6 @@
         <material>Gazebo/Green</material>
     </gazebo>
     <gazebo reference="camera">
-        <material>Gazebo/camera</material>
+        <material>Gazebo/Red</material>
     </gazebo>
 </robot>
