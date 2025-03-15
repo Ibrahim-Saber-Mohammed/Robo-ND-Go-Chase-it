@@ -1,0 +1,2 @@
+my_robot
+-DCATKIN_DEVEL_PREFIX=/home/robond/Desktop/GoChaseIt_robot/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/robond/Desktop/GoChaseIt_robot/catkin_ws/install -G Unix Makefiles
