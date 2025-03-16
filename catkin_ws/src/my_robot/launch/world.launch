@@ -34,6 +34,14 @@
     />
     <!--launch rviz-->
     <node name="rviz" pkg="rviz" type="rviz" respawn="false"/>
+    <node name="drive_bot" pkg="ball_chaser" type="drive_bot" respawn="false">
+       <rosparam>
+            min_linear_x: -1.0
+            max_linear_x: 1.0
+            min_angular_z: -1.7
+            max_angular_z: 1.7
+       </rosparam>
+    </node>
     
 
 </launch>

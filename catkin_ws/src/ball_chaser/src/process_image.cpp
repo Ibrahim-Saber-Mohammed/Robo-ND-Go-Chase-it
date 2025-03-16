@@ -36,13 +36,13 @@ void drive_robot(float lin_x, float ang_z)
 // This callback function continuously executes and reads the image data
 void process_image_callback(const sensor_msgs::Image& image)
 {
-        // TODO: Loop through each pixel in the image and check if there's a bright white one
+    // TODO: Loop through each pixel in the image and check if there's a bright white one
     // Then, identify if this pixel falls in the left, mid, or right side of the image
     // Depending on the white ball position, call the drive_bot function and pass velocities to it
     // Request a stop when there's no white ball seen by the camera
-    constexpr std::uint8_t WHITE_PIXLE{255};
+    static constexpr std::uint8_t WHITE_PIXLE{255};
     bool isWhiteBallFound{false};
-    decltype(image.height * image.step) white_ball_position{0};
+    int white_ball_position{-1};
     if(image.encoding != sensor_msgs::image_encodings::RGB8  )
     {
         ROS_ERROR("Required RGB image encoding to process");
@@ -71,20 +71,20 @@ void process_image_callback(const sensor_msgs::Image& image)
             // If it's in the left, mid, or right side of the image
             // Call the drive_bot function and pass velocities to it
             // Request a stop when there's no white ball seen by the camera
-            int horizontal_position = (white_ball_position / 3) % image.step;
-            float left_threshold = image.step / 3;
-	        float right_threshold = 2 * image.step / 3;
+            int horizontal_position = (white_ball_position) % image.step;
+            float left_threshold = image.step * 0.4;
+	    float right_threshold = image.step * 0.65 ;
             if(horizontal_position < left_threshold)
             {
-                drive_robot(0.0, -0.1); // turn left
+                drive_robot(0.5, 0.5); // turn left
             }
             else if(horizontal_position > right_threshold )
             {
-                drive_robot(0.0, 0.1); // turn right
+                drive_robot(0.5, -0.50); // turn right
             }
             else 
             {
-                drive_robot(0.1, 0.0); // move forward
+                drive_robot(0.5, 0.0); // move forward
             }
         }
     }

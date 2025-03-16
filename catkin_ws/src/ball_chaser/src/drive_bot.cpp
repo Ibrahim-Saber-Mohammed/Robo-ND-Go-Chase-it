@@ -51,7 +51,6 @@ bool handle_drive_request(ball_chaser::DriveToTarget::Request&req, ball_chaser::
     
     // Publish angles to drive the robot
     motor_command_publisher.publish(motor_command);
-    ros::Duration(3).sleep();
     
     // Return a response message
     res.msg_feedback = "linear velocity set to "+ std::to_string(clampedVelocities[0]) + ",  angular velocity set to " + std::to_string(clampedVelocities[1]);
