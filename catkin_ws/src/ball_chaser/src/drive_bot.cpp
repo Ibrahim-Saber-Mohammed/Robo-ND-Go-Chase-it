@@ -13,7 +13,7 @@
 std::vector<double>clamp_at_boundaries(float linear_x, float angular_z)
 {
     ros::NodeHandle nh;
-    std::string node_name = ros.this_node::getName();
+    std::string node_name = ros::this_node::getName();
     float clamped_vel_linear = linear_x;
     float clamped_vel_angular = angular_z;
 
