@@ -11,7 +11,7 @@ bool isWhiteBallFound{false};
 void requestRobotStop(void)
 {
     ROS_INFO("Requesting the Robot to Stop");
-    ball_chaser::DriveToTarget:: Robot_msg;
+    ball_chaser::DriveToTarget Robot_msg;
     Robot_msg.request.linear_x = 0.0;
     Robot_msg.request.angular_z = 0.0;
     if(!client.call(Robot_msg))
