@@ -72,8 +72,8 @@ void process_image_callback(const sensor_msgs::Image& image)
             // Call the drive_bot function and pass velocities to it
             // Request a stop when there's no white ball seen by the camera
             int horizontal_position = (white_ball_position / 3) % image.step;
-            float left_threshold = img.step / 3;
-	        float right_threshold = 2 * img.step / 3;
+            float left_threshold = image.step / 3;
+	        float right_threshold = 2 * image.step / 3;
             if(horizontal_position < left_threshold)
             {
                 drive_robot(0.0, 0.1); // turn left
