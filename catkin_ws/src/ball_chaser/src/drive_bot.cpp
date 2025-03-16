@@ -9,7 +9,7 @@
 #include <geometry_msgs/Twist.h>
 #include "ball_chaser/DriveToTarget.h"
 
-
+ros::Publisher motor_command_publisher ;
 std::vector<double>clamp_at_boundaries(float linear_x, float angular_z)
 {
     ros::NodeHandle nh;
@@ -68,7 +68,7 @@ int main (int argc, char**argv)
     // Create a service Server
     ros::ServiceServer command_robot_server = nh.advertiseService("ball_chaser/command_robot", handle_drive_request);
     // Inform ROS master that we will be publishing a message of type geometry_msgs::Twist on the robot actuation topic with a publishing queue size of 10
-    ros::Publisher motor_command_publisher = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
+    motor_command_publisher = nh.advertise<geometry_msgs::Twist>("/cmd_vel", 10);
 
     ros::spin();
 }
