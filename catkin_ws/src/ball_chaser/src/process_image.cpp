@@ -11,7 +11,7 @@ bool isWhiteBallFound{false};
 void requestRobotStop(void)
 {
     ROS_INFO("Requesting the Robot to Stop");
-    ball_chaser::DriveToTarget Robot_msg;
+    ball_chaser::DriveToTarget::Request Robot_msg;
     Robot_msg.linear_x = 0.0;
     Robot_msg.angular_z = 0.0;
     if(!client.call(Robot_msg))
@@ -24,7 +24,7 @@ void drive_robot(float lin_x, float ang_z)
 {
     // TODO: Request a service and pass the velocities to it to drive the robot
     ROS_INFO("Driving the Robot ");
-    ball_chaser::DriveToTarget Robot_msg;
+    ball_chaser::DriveToTarget::Request Robot_msg;
     Robot_msg.linear_x = lin_x;
     Robot_msg.angular_z = ang_z;
     if(!client.call(Robot_msg))
@@ -53,7 +53,7 @@ void process_image_callback(sensor_msgs::Image& image)
             // red channel   = image->data[i];
             // green channel = image->data[i + 1];
             // blue channel  = image->data[i + 2];
-            if(image.data[i] == WHITE_PIXLE && image.data[i + 1] == WHITE_PIXLE && image.data[i + 2] == WHITE_PIXLE)
+            if(image.data[iter] == WHITE_PIXLE && image.data[iter + 1] == WHITE_PIXLE && image.data[iter + 2] == WHITE_PIXLE)
             {
                 ROS_INFO("White Ball Found");
                 isWhiteBallFound = true;
@@ -88,7 +88,7 @@ void process_image_callback(sensor_msgs::Image& image)
         }
     }
 }
-inr main(int argc, char**argv)
+int main(int argc, char**argv)
 {
     // Create Node 
     ros::init(argc, argv, "process_image");
