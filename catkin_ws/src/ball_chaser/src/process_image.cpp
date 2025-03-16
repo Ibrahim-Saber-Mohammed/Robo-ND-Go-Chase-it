@@ -12,8 +12,8 @@ void requestRobotStop(void)
 {
     ROS_INFO("Requesting the Robot to Stop");
     ball_chaser::DriveToTarget Robot_msg;
-    msg.linear_x = 0.0;
-    msg.angular_z = 0.0;
+    Robot_msg.linear_x = 0.0;
+    Robot_msg.angular_z = 0.0;
     if(!client.call(Robot_msg))
     {
         ROS_ERROR("Failed to call service ball_chaser/command_robot");
@@ -25,8 +25,8 @@ void drive_robot(float lin_x, float ang_z)
     // TODO: Request a service and pass the velocities to it to drive the robot
     ROS_INFO("Driving the Robot ");
     ball_chaser::DriveToTarget Robot_msg;
-    msg.linear_x = lin_x;
-    msg.angular_z = ang_z;
+    Robot_msg.linear_x = lin_x;
+    Robot_msg.angular_z = ang_z;
     if(!client.call(Robot_msg))
     {
         ROS_ERROR("Failed to call service ball_chaser/command_robot");
@@ -35,7 +35,7 @@ void drive_robot(float lin_x, float ang_z)
 
 
 // This callback function continuously executes and reads the image data
-process_image_callback(sensor_msgs::Image& image)
+void process_image_callback(sensor_msgs::Image& image)
 {
         // TODO: Loop through each pixel in the image and check if there's a bright white one
     // Then, identify if this pixel falls in the left, mid, or right side of the image
@@ -43,7 +43,7 @@ process_image_callback(sensor_msgs::Image& image)
     // Request a stop when there's no white ball seen by the camera
     constexpr std::uint8_t WHITE_PIXLE{255};
     decltype(image.height * image.step) white_ball_position{0};
-    if(!image.encoding == sensor_msgs::image_encodings::RGB8  )
+    if(image.encoding != sensor_msgs::image_encodings::RGB8  )
     {
         ROS_ERROR("Required RGB image encoding to process");
     }
@@ -53,7 +53,7 @@ process_image_callback(sensor_msgs::Image& image)
             // red channel   = image->data[i];
             // green channel = image->data[i + 1];
             // blue channel  = image->data[i + 2];
-            if(image->data[i] == WHITE_PIXLE && image->data[i + 1] == WHITE_PIXLE && image->data[i + 2] == WHITE_PIXLE)
+            if(image.data[i] == WHITE_PIXLE && image.data[i + 1] == WHITE_PIXLE && image.data[i + 2] == WHITE_PIXLE)
             {
                 ROS_INFO("White Ball Found");
                 isWhiteBallFound = true;
@@ -72,7 +72,7 @@ process_image_callback(sensor_msgs::Image& image)
             // Call the drive_bot function and pass velocities to it
             // Request a stop when there's no white ball seen by the camera
             int horizontal_position = (white_ball_position / 3) % image.step;
-            if(horizontal_position < image->width / 3)
+            if(horizontal_position < image.width / 3)
             {
                 drive_robot(0.0, 0.5); // turn left
             }
