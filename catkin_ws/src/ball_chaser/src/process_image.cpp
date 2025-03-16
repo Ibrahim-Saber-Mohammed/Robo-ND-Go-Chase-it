@@ -35,7 +35,7 @@ void drive_robot(float lin_x, float ang_z)
 
 
 // This callback function continuously executes and reads the image data
-void process_image_callback(sensor_msgs::Image& image)
+void process_image_callback(const sensor_msgs::Image& image)
 {
         // TODO: Loop through each pixel in the image and check if there's a bright white one
     // Then, identify if this pixel falls in the left, mid, or right side of the image
