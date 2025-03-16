@@ -26,12 +26,12 @@ std::vector<double>clamp_at_boundaries(float linear_x, float angular_z)
     if(clamped_vel_linear < min_linear_x || clamped_vel_linear > max_linear_x)
     {
         clamped_vel_linear = std::min( max_linear_x, std::max(clamped_vel_linear, min_linear_x));
-        ROS_WARN("j1 is out of bounds, valid range (%1.2f,%1.2f), clamping to: %1.2f", min_linear_x, max_linear_x, clamped_vel_linear);
+        ROS_WARN("linear_x is out of bounds, valid range (%1.2f,%1.2f), clamping to: %1.2f", min_linear_x, max_linear_x, clamped_vel_linear);
     }
     if(clamped_vel_angular < min_angular_z || clamped_vel_angular > max_angular_z)
     {
         clamped_vel_angular = std::min( max_angular_z, std::max(clamped_vel_angular, min_angular_z));
-        ROS_WARN("j1 is out of bounds, valid range (%1.2f,%1.2f), clamping to: %1.2f", min_angular_z, max_angular_z, clamped_vel_angular);
+        ROS_WARN("angular_z is out of bounds, valid range (%1.2f,%1.2f), clamping to: %1.2f", min_angular_z, max_angular_z, clamped_vel_angular);
     }
     std::vector<double> clamped_data{clamped_vel_linear, clamped_vel_angular};
     return clamped_data;

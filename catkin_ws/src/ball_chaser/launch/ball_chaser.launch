@@ -2,13 +2,13 @@
     <!-- The drive_bot node
     <node name="drive_bot" type="drive_bot" pkg="ball_chaser" output="screen">
     </node> -->
-    
+
   <!-- The drive bot node -->
   <node name="drive_bot" type="drive_bot" pkg="ball_chaser" output="screen">
     <rosparam>
       min_linear_x: 1.0
-      max_linear_x: -1.7
-      min_angular_z: -1.0
+      max_linear_x: -1.0
+      min_angular_z: -1.7
       max_angular_z: 1.7
     </rosparam>
   </node>
