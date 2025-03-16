@@ -12,4 +12,8 @@
       max_angular_z: 1.7
     </rosparam>
   </node>
+  
+  <node name="process_image" type="process_image" pkg="ball_chaser" output="screen">
+  </node>
+
 </launch>
