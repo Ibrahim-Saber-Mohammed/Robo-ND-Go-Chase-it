@@ -11,9 +11,9 @@ bool isWhiteBallFound{false};
 void requestRobotStop(void)
 {
     ROS_INFO("Requesting the Robot to Stop");
-    ball_chaser::DriveToTarget::Request Robot_msg;
-    Robot_msg.linear_x = 0.0;
-    Robot_msg.angular_z = 0.0;
+    ball_chaser::DriveToTarget:: Robot_msg;
+    Robot_msg.request.linear_x = 0.0;
+    Robot_msg.request.angular_z = 0.0;
     if(!client.call(Robot_msg))
     {
         ROS_ERROR("Failed to call service ball_chaser/command_robot");
@@ -24,9 +24,9 @@ void drive_robot(float lin_x, float ang_z)
 {
     // TODO: Request a service and pass the velocities to it to drive the robot
     ROS_INFO("Driving the Robot ");
-    ball_chaser::DriveToTarget::Request Robot_msg;
-    Robot_msg.linear_x = lin_x;
-    Robot_msg.angular_z = ang_z;
+    ball_chaser::DriveToTarget Robot_msg;
+    Robot_msg.request.linear_x = lin_x;
+    Robot_msg.request.angular_z = ang_z;
     if(!client.call(Robot_msg))
     {
         ROS_ERROR("Failed to call service ball_chaser/command_robot");
