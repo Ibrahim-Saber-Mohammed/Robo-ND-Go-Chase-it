@@ -3,7 +3,7 @@
 #include "ball_chaser/DriveToTarget.h"
 #include <geometry_msgs/Twist.h>
 #include <sensor_msgs/image_encodings.h>
-
+#include <cstdint>
 ros::ServiceClient client;
 
 
@@ -76,11 +76,11 @@ void process_image_callback(const sensor_msgs::Image& image)
 	        float right_threshold = 2 * image.step / 3;
             if(horizontal_position < left_threshold)
             {
-                drive_robot(0.0, 0.1); // turn left
+                drive_robot(0.0, -0.1); // turn left
             }
             else if(horizontal_position > right_threshold )
             {
-                drive_robot(0.0, -0.1); // turn right
+                drive_robot(0.0, 0.1); // turn right
             }
             else 
             {
