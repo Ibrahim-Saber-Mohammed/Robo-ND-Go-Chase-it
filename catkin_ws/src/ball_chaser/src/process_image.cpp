@@ -5,7 +5,6 @@
 #include <sensor_msgs/image_encodings.h>
 
 ros::ServiceClient client;
-bool isWhiteBallFound{false};
 
 
 void requestRobotStop(void)
@@ -42,6 +41,7 @@ void process_image_callback(const sensor_msgs::Image& image)
     // Depending on the white ball position, call the drive_bot function and pass velocities to it
     // Request a stop when there's no white ball seen by the camera
     constexpr std::uint8_t WHITE_PIXLE{255};
+    bool isWhiteBallFound{false};
     decltype(image.height * image.step) white_ball_position{0};
     if(image.encoding != sensor_msgs::image_encodings::RGB8  )
     {
@@ -74,15 +74,15 @@ void process_image_callback(const sensor_msgs::Image& image)
             int horizontal_position = (white_ball_position / 3) % image.step;
             if(horizontal_position < image.width / 3)
             {
-                drive_robot(0.0, 0.5); // turn left
+                drive_robot(0.0, 0.1); // turn left
             }
             else if((horizontal_position > (image.width / 3 )) && ( horizontal_position < ( 2 * image.width / 3 )))
             {
-                drive_robot(0.5, 0.0); // move forward
+                drive_robot(0.1, 0.0); // move forward
             }
             else if(horizontal_position > (2 * image.width / 3))
             {
-                drive_robot(0.0, -0.5); // turn right
+                drive_robot(0.0, -0.1); // turn right
             }
             else{}
         }
