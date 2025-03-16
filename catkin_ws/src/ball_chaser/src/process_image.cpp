@@ -73,7 +73,7 @@ void process_image_callback(const sensor_msgs::Image& image)
             // Request a stop when there's no white ball seen by the camera
             int horizontal_position = (white_ball_position) % image.step;
             float left_threshold = image.step * 0.4;
-	    float right_threshold = image.step * 0.65 ;
+	        float right_threshold = image.step * 0.65 ;
             if(horizontal_position < left_threshold)
             {
                 drive_robot(0.5, 0.5); // turn left
