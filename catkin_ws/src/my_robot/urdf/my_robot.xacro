@@ -182,7 +182,7 @@
     </joint>
 
     <gazebo reference="chassis">
-        <material>Gazebo/Turquoise</material>
+        <material>Gazebo/PurpleGlow</material>
     </gazebo>
     <gazebo reference="left_wheel">
         <material>Gazebo/BlueGlow</material>
