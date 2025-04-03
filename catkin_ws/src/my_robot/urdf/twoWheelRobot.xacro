@@ -1,7 +1,7 @@
 <?xml version='1.0'?>
 
 <robot name="my_robot" xmlns:xacro="http://www.ros.org/wiki/xacro">
-     <xacro:include filename="$(find my_robot)/urdf/my_robot.gazebo" />
+     <xacro:include filename="$(find my_robot)/urdf/twoWheelRobot.gazebo" />
     <link name="robot_footprint"></link>
     
     <joint name="robot_footprint_joint" type="fixed">
@@ -11,9 +11,10 @@
     </joint>
 
     <link name='chassis'>
+        <pose> 0 0 0.1 0 0 0 </pose>
         <visual name="chassis_visual">
             <geometry>
-                <box size='0.6 0.3 0.2' />
+                <box size='0.6 0.45 0.2' />
             </geometry>
             <origin xyz="0 0 0" rpy="0 0 0" />
         </visual>
@@ -27,9 +28,9 @@
             <mass value="20.0" />
             <origin xyz="0.0 0 0" rpy=" 0 0 0" />
             <inertia
-                ixx="0.21666666666666667" ixy="0" ixz="0"
+                ixx="0.4041666666666673" ixy="0" ixz="0"
                 iyy="0.6666666666666667" iyz="0"
-                izz="0.75"
+                izz="0.9375"
             />
         </inertial>
 
@@ -147,7 +148,7 @@
     </link>
 
     <joint type="fixed" name="camera_joint">
-        <origin xyz="0.2 0 0" rpy="0 0 0" />
+        <origin xyz="0.3 0 0" rpy="0 0 0" />
         <child link="camera" />
         <parent link="chassis" />
         <axis xyz="0 1 0" rpy="0 0 0" />
@@ -174,7 +175,7 @@
     </link>
 
     <joint type="fixed" name="hokuyo_joint">
-        <origin xyz="0.15 0 0.1" rpy="0 0 0" />
+        <origin xyz="0.2 0 0.1" rpy="0 0 0" />
         <child link="hokuyo" />
         <parent link="chassis" />
         <axis xyz="0 1 0" rpy="0 0 0" />
